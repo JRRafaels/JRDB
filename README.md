@@ -1,6 +1,6 @@
 # JRDB
 JRDB - based on the universal database sqlite3 encapsulation
-# 基于sqlite3的通用数据库封装
+## JRDB - 基于sqlite3的通用数据库封装
 >* 说明：
 >	* 本文介绍JRDB的相关用法以及简单的实现原理。
 >	* Categories：
