@@ -8,7 +8,7 @@ JRDB - based on the universal database sqlite3 encapsulation
 >		* JRDataBaseManager (OperationSQLiteTable)
 >* 此文章由 @JR_Rafael 编写. 若转载此文章，请注明出处和作者
 
-**注意事项：此类需要将Build Setting下 Enable Strict Checking of objc_msgSend Calls 改为Yes，才可以正常使用。**
+**注意事项：此类需要将Build Setting下 Enable Strict Checking of objc_msgSend Calls 改为No，才可以正常使用。**
 
 ## 开发者说明：
 JRDB对于sqlite3的封装与其他类对于数据库的封装不同，**其中最主要的区别就是开发者在使用此类时不需要再次封装来适应不同的数据模型。**现有的iOS相关数据库封装包括基本的sqlite3都必须要进行二次封装甚至多次封装才能满足程序对于数据库的需求。**而在大多数的程序中数据库的表单还有其对表单进行的一些基本操作往往会有多套方法，这就导致了在运用数据库进行操作的时候方法过多，封装冗杂。**
