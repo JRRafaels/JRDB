@@ -72,11 +72,11 @@ JRDB对于sqlite3的封装与其他类对于数据库的封装不同，**其中�
 **Introduction:** 确定表单之后，当key = value时，进行删除数据操作。
 
 #### + (BOOL)clearTableWithModelClass:(Class)modelClass;
-> * 删除整个数据库表单
-> * 参数：类名，确定在数据库中删除的表单
-> * 返回值：是否删除成功
+> * 清除整个表单数据
+> * 参数：类名，确定在数据库中清除的表单
+> * 返回值：是否清除成功
 
-**Introduction:** 在删除这个表单之后同样会对其主键包括sqlite_sequence进行清除，以便于再下一次创建表单时重置数据库。
+**Introduction:** 在清除这个表单之后同样会对其主键包括sqlite_sequence进行清除，以便于下一次插入数据。
 
 #### + (BOOL)updateTableWithModelClass:(Class)modelClass whereKey:(NSString *)key isValue:(id)value setKeyAndValue:(id)firstObject, ...NS_ REQUIRES_ NIL_TERMINATION;
 > * 更新表单数据
