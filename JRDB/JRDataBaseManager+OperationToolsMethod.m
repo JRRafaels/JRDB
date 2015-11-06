@@ -65,7 +65,7 @@
         return @"real";
     } else if ([type isEqualToString:@"i"] || [type isEqualToString:@"q"] || [type isEqualToString:@"Q"] || [type isEqualToString:@"B"]){
         return @"integer";
-    } else if ([type isEqualToString:@"NSData"] || [type isEqualToString:@"NSDictionary"] || [type isEqualToString:@"NSArray"] || [type isEqualToString:@"NSMutableDictionary"] || [type isEqualToString:@"NSMutableArray"]) {
+    } else if ([type isEqualToString:@"NSData"]) {
         return @"blob";
     } else {
         return @"text";
@@ -204,11 +204,17 @@
     } else if ([type isEqualToString:@"NSDictionary"] || [type isEqualToString:@"NSMutableDictionary"]) {
         // FIXME: 字典数组待完善
         NSDictionary *dic = [model valueForKey:name];
+        if (!dic) {
+            return @"{\n }";
+        }
         NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
         NSString *str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         return str;
     } else if ([type isEqualToString:@"NSArray"] || [type isEqualToString:@"NSMutableArray"]) {
         NSArray *arr = [model valueForKey:name];
+        if (!arr) {
+            return @"[\n ]";
+        }
         NSData *data = [NSJSONSerialization dataWithJSONObject:arr options:NSJSONWritingPrettyPrinted error:nil];
         NSString *str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         return str;
