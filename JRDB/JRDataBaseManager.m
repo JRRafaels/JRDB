@@ -113,7 +113,7 @@
     
     // TODO: 创建SQL插入语句
     NSString *sqlInsert = [NSString stringWithFormat:@"insert into %@(%@) values(%@)", [model class], sqlName, sqlType];
-    
+    NSLog(@"%@", sqlInsert);
     // 执行sql语句
     sqlite3 *db = [JRDataBaseManager shareDataBase];
     int reslut = sqlite3_exec(db, sqlInsert.UTF8String, NULL, NULL, NULL);
@@ -163,16 +163,14 @@
 
 /** 更新数据库key1, value1... */
 + (BOOL)updateTableWithModelClass:(Class)modelClass whereKey:(NSString *)key isValue:(id)value setKeyAndValue:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION {
-    // 定义一个 va_list 指针访问参数表
     va_list args;
-    // 初始化 va_list 指向第一个参数, firstObject为第一个参数
     va_start(args, firstObject);
+    
     NSMutableArray *mArrKey = [@[firstObject] mutableCopy];
     NSMutableArray *mArrValue = [NSMutableArray array];
     id tempObject;
-    // 遍历参数list
+    
     int i = 0;
-    // va_arg逐个获取参数 自动指向下一个参数
     while ((tempObject = va_arg(args, id))) {
         if(i++ % 2 != 0) {
             // key数组
@@ -216,7 +214,7 @@
     
     if (result == SQLITE_OK) {
         while (sqlite3_step(stmt) == SQLITE_ROW) {
-            id model = [[modelClass alloc] init];
+            id model = [[[modelClass alloc] init] autorelease];
             // 遍历数组中的字典, 取出相关的model
             for (int i = 0; i < arrPptyDic.count; i++) {
                 NSDictionary *dic = arrPptyDic[i];
@@ -247,7 +245,7 @@
     
     if (result == SQLITE_OK) {
         while (sqlite3_step(stmt) == SQLITE_ROW) {
-            id model = [[modelClass alloc] init];
+            id model = [[[modelClass alloc] init] autorelease];
             for (int i = 0; i < arrPptyDic.count; i++) {
                 NSDictionary *dic = arrPptyDic[i];
                 model = [self returnModelWithModelClass:modelClass WithModel:model WithName:dic[@"name"] WithType:dic[@"type"] stmt:stmt index:i + 1];

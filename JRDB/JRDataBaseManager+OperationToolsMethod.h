@@ -27,7 +27,7 @@
 + (NSString *)makeSqlInsertKeysStringWithType:(NSString *)type;
 
 /** 逐个返回model属性的值 */
-+ (NSString *)formatPropertyTypeWithType:(NSString *)type propertyName:(NSString *)name model:(id)model;
++ (id)formatPropertyTypeWithType:(NSString *)type propertyName:(NSString *)name model:(id)model;
 
 @end
 
